@@ -5,22 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use App\Models\User;
+
 class HomeController extends Controller
 {
-    // Ensure this controller uses authentication middleware
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    public function redirect(){
 
-    public function redirect()
-    {
-        $usertype = Auth::user()->usertype;
+        $usertype=Auth::user()->usertype;
 
-        // Redirect based on user type
-        if ($usertype === '1') {
+        if($usertype=='1'){
+
             return view('admin.home');
-        } else {
+        }
+        else 
+        {
             return view('dashboard');
         }
     }
@@ -29,4 +27,4 @@ class HomeController extends Controller
     {
         return view('User.home');
     }
-}
+}  
